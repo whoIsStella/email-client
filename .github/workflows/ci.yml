@@ -22,4 +22,4 @@ jobs:
         run: python -m compileall secure-mail-backend/app
       - name: Import app
         working-directory: secure-mail-backend
-        run: python -c "from app.main import app; assert any(r.path == '/health' for r in app.routes)"
+        run: python -c "from app.main import app; assert any(getattr(r, 'path', None) == '/health' for r in app.routes)"
